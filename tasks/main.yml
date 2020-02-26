@@ -1,0 +1,13 @@
+- name: start a gitbitlabhub container
+  docker_container:
+    name: "{{ gitbitlabhub_container_name }}"
+    image: karser/gitbitlabhub
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ gitbitlabhub_container_host_address }}:{{ gitbitlabhub_container_port }}:8080"
+    env:
+      SRC_REPO: "{{ gitbitlabhub_container_src_repo }}"
+      DEST_REPO: "{{ gitbitlabhub_container_dest_repo }}"
+      SRC_DEPLOY_KEY: "{{ gitbitlabhub_container_src_deploy_key_base64 }}"
+      DEST_DEPLOY_KEY: "{{ gitbitlabhub_container_dest_deploy_key_base64 }}"
